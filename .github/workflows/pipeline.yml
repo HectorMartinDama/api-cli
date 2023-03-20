@@ -1,4 +1,4 @@
-name: Build and test api
+name: Pipeline
 
 
 on: 
