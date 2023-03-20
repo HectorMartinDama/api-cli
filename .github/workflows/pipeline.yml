@@ -12,13 +12,13 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 # Descarga el repositorio para poder utlizarlo
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3 # Instala node
         with:
           node-version: 16
-      - name: Install dependencies
+      - name: Install dependencies # Instalar todas las dependencias del proyecto
         run: npm install
-      - name: Pass Linter
+      - name: Pass Linter # Paso el linter
         run: npm run lint
