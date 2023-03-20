@@ -1,4 +1,4 @@
-name: Pipeline
+name: Build and test api
 
 
 on: 
@@ -22,3 +22,5 @@ jobs:
         run: npm install
       - name: Pass Linter # Paso el linter
         run: npm run lint
+      - name: Test 
+        run: npm run tets
