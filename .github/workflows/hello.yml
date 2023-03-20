@@ -15,3 +15,8 @@ jobs:
       - name: Echo the message
         run: |
           echo "hello world"
+      - name: Get the date
+        run: |
+          date
+      -  run: |
+          ls -l
