@@ -1,7 +1,7 @@
 const Note=  require('../models/nota');
 
 const new_note= (async (req, res) =>{
-    const data= req.body
+    const data= req.body;
 
     const newNote= new Note({
         nombre: data.nombre,
@@ -15,7 +15,7 @@ const new_note= (async (req, res) =>{
 
 const notes= (async (req, res) =>{
     const notes= await Note.find(null, {nombre: 1, content: 1, important: 1, _id: 0});
-    res.status(200).json(notes)
+    res.status(200).json(notes);
 });
 
 
