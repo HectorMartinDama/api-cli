@@ -1,0 +1,17 @@
+# Siempre el workflow debe de tener un nombre.
+name: Say Hello 
+# La propiedad (on) se utiliza para indicar cuando activa el workflow es decir (githib actions).
+# en este caso es cuando se realize un push en la rama principal (main) 
+on:
+  push: 
+    branches:
+      - "main"
+
+# ¿Que hace el workflow?
+jobs:
+  hello_world:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Echo the message
+        run: |
+          echo "hello world"
