@@ -1,0 +1,44 @@
+const mongoose= require('mongoose');
+const Nota= require('../models/nota');
+const { server }= require('../app');
+const { api, initialNotas }= require('./helpers');
+
+beforeEach(async () =>{
+    await Nota.deleteMany({});
+
+    for(let nota of initialNotas){
+        const newNota= new Nota(nota);
+        await newNota.save();
+    }
+});
+
+
+test('initialNotes create ok', async() =>{
+    await api
+        .get('/api/notas/notes')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+    const totalNotes= await Nota.find({});
+    expect(totalNotes).toHaveLength(initialNotas.length);
+});
+
+test('create a new note', async () =>{
+    await api
+        .post('/api/notas/new_nota')
+        .send({nombre: 'Hector', content: 'this is a note', important: true})
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+    const findNote= await Nota.findOne({nombre:'Hector'});
+    expect(findNote.nombre).toBe('Hector');
+});
+
+
+
+// funcion que se ejecuta al finalizar todos los test
+afterAll(() =>{ 
+    mongoose.connection.close(); // cierra la base de datos
+    server.close(); // cierra el servidor.
+});
+
