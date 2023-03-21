@@ -1,6 +1,7 @@
 name: Pipeline
 
 
+# ¿Cuando se ejecuta el workflow?
 on: 
   push:
     branches: [main]
@@ -24,7 +25,7 @@ jobs:
         run: npm ci # npm install pero optimizado para Continous Integration
       - name: Pass Linter # Paso el linter
         run: npm run lint
-      - name: Test
+      - name: Test # Pasa los test
         env:
-          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }} # secreto del repositorio
         run: npm run test
