@@ -6,9 +6,6 @@ on:
     branches:
       - "main"
 
-env:
-  MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
-
 
 # ¿Que hace el workflow?
 jobs:
@@ -25,5 +22,7 @@ jobs:
         run: npm ci # npm install pero optimizado para Continous Integration
       - name: Pass Linter # Paso el linter
         run: npm run lint
-      - name: Test 
+      - name: Test
+        env:
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
         run: npm run test
