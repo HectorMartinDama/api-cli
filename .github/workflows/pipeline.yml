@@ -3,8 +3,10 @@ name: Pipeline
 
 on: 
   push:
-    branches:
-      - "main"
+    branches: [main]
+  pull_request: 
+    branches: [main]
+    types: [opened, synchronize]
 
 
 # ¿Que hace el workflow?

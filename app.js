@@ -4,7 +4,7 @@ const app = express();
 const notaRouter= require('./routes/notaRouter');
 require('dotenv').config();
 app.use(express.json());
-
+const { version }= require('./package.json');
 
 // create the server
 const server= require('http').createServer(app);
@@ -15,10 +15,16 @@ const MONGO_URI= process.env.NODE_ENV === 'test'
     : process.env.MONGO_URI;
 
 
-app.get('/', function (req, res) {
-  res.send('Hello World');
+// healt -> Ruta para comprobar el funcionamiento de la api
+app.get('/healt', (req, res) => {
+  res.send('ok');
 });
 
+// indica la version de package.json
+app.get('/version', (req, res) => {
+    res.send(version);
+});
+  
 
 // Conexion bbdd 
 mongoose.connect(MONGO_URI).then(() =>{
