@@ -6,6 +6,9 @@ on:
     branches:
       - "main"
 
+env:
+  MONGO_URI_TEST: mongodb+srv://HectorMartinDama:hector010702@cluster0.vvwj1.mongodb.net/test_notas-cli?retryWrites=true&w=majority
+
 
 # ¿Que hace el workflow?
 jobs:
@@ -19,7 +22,7 @@ jobs:
         with:
           node-version: 16
       - name: Install dependencies # Instalar todas las dependencias del proyecto
-        run: npm install
+        run: npm cli # npm install pero optimizado para Continous Integration
       - name: Pass Linter # Paso el linter
         run: npm run lint
       - name: Test 
