@@ -7,7 +7,7 @@ on:
       - "main"
 
 env:
-  MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
+  MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
 
 
 # ¿Que hace el workflow?
