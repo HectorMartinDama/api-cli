@@ -12,7 +12,9 @@ on:
 
 # ¿Que hace el workflow?
 jobs:
-  deploy:
+
+
+  avoid_reduncy:
     runs-on: ubuntu-20.04
     steps:
       - name: Cancel Previous Redundant Buidls
@@ -20,17 +22,33 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
       - uses: actions/checkout@v3 # Descarga el repositorio para poder utlizarlo
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v3 # Instala node
         with:
           node-version: 16
-      - name: Install dependencies # Instalar todas las dependencias del proyecto
-        run: npm ci # npm install pero optimizado para Continous Integration
-      - name: Pass Linter # Paso el linter
+      - name: Pass linter
         run: npm run lint
-      - name: Test # Pasa los test
+
+
+  test:
+    needs: [lint] # se ejecuta cuando acabe el job (lint)
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3 # Descarga el repositorio para poder utlizarlo
+        with:
+            fetch-depth: 0
+      - uses: actions/setup-node@v3 # Instala node
+        with:
+          node-version: 16
+      - name: Pass test
         env:
           MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }} # secreto del repositorio
         run: npm run test
+    
+
+
