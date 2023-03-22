@@ -30,8 +30,8 @@ test('create a new note', async () =>{
         .expect('Content-Type', /json/)
         .expect(200);
 
-    const findNote= await Nota.findOne({nombre:'Hector'});
-    expect(findNote.nombre).toBe('Hector');
+    const totalNotes= await Nota.find({});
+    expect(totalNotes).toHaveLength((initialNotas.length) + 1);
 });
 
 
