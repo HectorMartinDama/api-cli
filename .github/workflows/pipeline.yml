@@ -47,6 +47,8 @@ jobs:
       - uses: actions/setup-node@v3 # Instala node
         with:
           node-version: 16
+      - name: Install dependencies # Instalar todas las dependencias del proyecto
+        run: npm ci # npm install pero optimizado para Continous Integration
       - name: Pass test
         env:
           MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }} # secreto del repositorio
