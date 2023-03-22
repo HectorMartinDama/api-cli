@@ -20,7 +20,7 @@ test('initialNotes create ok', async() =>{
         .expect(200);
 
     const totalNotes= await Nota.find({});
-    expect(totalNotes).toHaveLength(initialNotas.length);
+    expect(totalNotes).toHaveLength(5);
 });
 
 test('create a new note', async () =>{
