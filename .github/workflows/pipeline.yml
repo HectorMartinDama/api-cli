@@ -74,6 +74,6 @@ jobs:
         if: ${{ github.event_name == 'push' }} # este evento se activa cuando se hace un push
         run: railway up
         env:
-          RAILWAY_TOKEN: ${{ RAILWAY_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
   
