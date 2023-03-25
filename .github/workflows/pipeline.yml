@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3 # Descarga el repositorio para poder utlizarlo
         with:
-            fetch-depth: 0
+            fetch-depth: 0 # Descargar el ultimo commit
       - uses: actions/setup-node@v3 # Instala node
         with:
           node-version: 16
@@ -56,9 +56,24 @@ jobs:
     
 
 
-  ###deploy:
-    #needs: [lint, test]
-    #runs-on: ubuntu-20.04
-    #steps:
-      #- 
-  ###
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3 # Descarga el repositorio para poder utlizarlo
+        with:
+            fetch-depth: 0 # Descarga el ultimo commit
+      - uses: actions/setup-node@v3 # Instala node
+        with:
+          node-version: 16
+      - name: Install dependencies # Instalar todas las dependencias del proyecto
+        run: npm ci # npm install pero
+      - name: Install Railway # Instala railway
+        run: npm i -g @railway/cli
+      - name: Deploy
+        if: ${{ github.event_name == 'push' }} # este evento se activa cuando se hace un push
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ RAILWAY_TOKEN }}
+
+  
