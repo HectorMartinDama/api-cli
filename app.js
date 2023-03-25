@@ -22,7 +22,7 @@ app.get('/healt', (req, res) => {
 
 // indica la version de package.json
 app.get('/version', (req, res) => {
-    res.send(version)
+    res.send(version);
 });
   
 
