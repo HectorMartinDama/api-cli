@@ -75,5 +75,7 @@ jobs:
         run: railway up
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }} # secreto del repositorio
+
 
   
