@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParse= require('body-parser');
 const app = express();
 const notaRouter= require('./routes/notaRouter');
 require('dotenv').config();
@@ -8,6 +9,10 @@ const { version }= require('./package.json');
 
 // create the server
 const server= require('http').createServer(app);
+
+
+app.use(bodyParse.urlencoded({extended: true}));
+app.use(bodyParse.json());
 
 const PORT= 5001;
 const MONGO_URI= process.env.NODE_ENV === 'test'
