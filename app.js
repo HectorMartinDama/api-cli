@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParse= require('body-parser');
 const app = express();
 const notaRouter= require('./routes/notaRouter');
 require('dotenv').config();
@@ -11,10 +10,7 @@ const { version }= require('./package.json');
 const server= require('http').createServer(app);
 
 
-app.use(bodyParse.urlencoded({extended: true}));
-app.use(bodyParse.json());
-
-const PORT= 5001;
+const PORT= process.env.PORT || 7405;
 const MONGO_URI= process.env.NODE_ENV === 'test'
     ? process.env.MONGO_URI_TEST
     : process.env.MONGO_URI;
@@ -44,9 +40,7 @@ server.listen(PORT, ()=>{
     console.log(`🚀 Server running on: http://localhost:${PORT}`);
 });
 
-
 app.use('/api/notas', notaRouter);
-
 
 
 module.exports= { app, server };
