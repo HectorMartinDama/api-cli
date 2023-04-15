@@ -15,7 +15,7 @@ beforeEach(async () =>{
 
 test('initialNotes create ok', async() =>{
     await api
-        .get('/api/notas/notes')
+        .get('/api/notes')
         .expect('Content-Type', /json/)
         .expect(200);
 
@@ -25,13 +25,23 @@ test('initialNotes create ok', async() =>{
 
 test('create a new note', async () =>{
     await api
-        .post('/api/notas/new_nota')
+        .post('/api/newNote')
         .send({nombre: 'Hector', content: 'this is a note', important: true})
         .expect('Content-Type', /json/)
         .expect(200);
 
     const totalNotes= await Nota.find({});
     expect(totalNotes).toHaveLength((initialNotas.length) + 1);
+});
+
+
+test('check the endpoint health', async () =>{
+    const response= await api
+        .get('/healt')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+    expect(response.body).toMatchObject({status: 'ok'});
 });
 
 
