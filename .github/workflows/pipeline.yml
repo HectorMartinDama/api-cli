@@ -13,7 +13,6 @@ on:
 # ¿Que hace el workflow?
 jobs:
 
-
   avoid_reduncy:
     runs-on: ubuntu-20.04
     steps:

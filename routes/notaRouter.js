@@ -3,10 +3,8 @@
 const notaRouter = require('express').Router();
 const notaController= require('../controllers/notaController');
 
-
-
 notaRouter
-    .post('/new_nota', notaController.new_note)
+    .post('/newNote', notaController.new_note)
     .get('/notes', notaController.notes);
 
 

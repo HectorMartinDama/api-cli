@@ -16,8 +16,6 @@ const initialNotas= [
     }
 ];
 
-
-
 module.exports= {
     initialNotas,
     api

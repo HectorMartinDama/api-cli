@@ -1,3 +1,4 @@
+
 const Note=  require('../models/nota');
 
 const new_note= (async (req, res) =>{
