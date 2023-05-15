@@ -1,6 +1,16 @@
 
+
 # Api Rest + CI/CD Example
 
+
+Basic Api Rest deploy with CI and CD in Railway 
+
+## ✨ Features
+- Node
+- CI/CD
+- Jest / Supertest
+- Lint
+- MongoDB
 
 
 ## API Reference
@@ -56,4 +66,3 @@
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/ZweBXA)
 
 [![Pipeline](https://github.com/HectorMartinDama/api-cli/actions/workflows/pipeline.yml/badge.svg)](https://github.com/HectorMartinDama/api-cli/actions/workflows/pipeline.yml)
-
