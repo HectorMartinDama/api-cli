@@ -23,6 +23,10 @@ test('initialNotes create ok', async() =>{
     expect(totalNotes).toHaveLength(initialNotas.length);
 });
 
+test('check the endpoint dont exist', async () =>{
+    await api.get('/api/notexists').expect(404);
+});
+
 test('create a new note', async () =>{
     await api
         .post('/api/newNote')
