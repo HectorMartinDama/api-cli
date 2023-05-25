@@ -56,5 +56,5 @@ server.listen(PORT, () => {
 
 app.use('/api', notaRouter);
 
-// exportamos estos modulos
+// exportamos estos module
 module.exports = { app, server };
