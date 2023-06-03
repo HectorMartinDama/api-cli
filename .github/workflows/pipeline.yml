@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: 16
       - name: Install dependencies # Instalar todas las dependencias del proyecto
-        run: npm ci # npm install pero optimizado para Continous Integration
+        run: npm install # npm install pero optimizado para Continous Integration
       - name: Pass linter
         run: npm run lint
 
