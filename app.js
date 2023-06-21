@@ -7,6 +7,7 @@ const notaRouter = require('./routes/notaRouter');
 require('dotenv').config();
 app.use(express.json());
 const { version } = require('./package.json');
+const path = require('path');
 
 // create the server
 const server = require('http').createServer(app);
@@ -29,6 +30,10 @@ app.get('/healt', (req, res) => {
 // indica la version de package.json
 app.get('/version', (req, res) => {
     res.send(version);
+});
+
+app.get('/image', (req, res) =>{
+    res.sendFile(path.resolve('./velada.png'));
 });
 
 app.get('/', (req, res) =>{
