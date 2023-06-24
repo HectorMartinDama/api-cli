@@ -1,13 +1,31 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer'); 
+const cors = require('cors');
+
+const storage= multer.diskStorage({
+    destination: function(req, file, callback){
+        return callback(null, './uploads');
+    },
+    filename: function(req, file, callback){
+        return callback(null, file.originalname);
+    }
+});
+
+const upload = multer({storage: storage});  
 
 
 const app = express();
 const notaRouter = require('./routes/notaRouter');
 require('dotenv').config();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+
 const { version } = require('./package.json');
 const path = require('path');
+const { setTimeout } = require('timers/promises');
 
 // create the server
 const server = require('http').createServer(app);
@@ -22,6 +40,10 @@ const MONGO_URI = process.env.NODE_ENV === 'test'
     : process.env.MONGO_URI;
 
 
+
+
+
+
 // healt -> Ruta para comprobar el funcionamiento de la api
 app.get('/healt', (req, res) => {
     res.json({status: 'ok'});
@@ -32,8 +54,17 @@ app.get('/version', (req, res) => {
     res.send(version);
 });
 
-app.get('/image', (req, res) =>{
-    res.sendFile(path.resolve('./velada.png'));
+app.post('/', upload.single('image'), (req, res) =>{
+    if(!req.file) return res.send({success: false});
+    else return res.send({success: true, fileName: req.file.originalname });
+});
+
+
+app.get('/image/:name', (req, res) =>{
+    res.setTimeout(5000, () => {
+        res.sendFile(path.resolve('./uploads/' + req.params.name));
+    });
+    //res.sendFile(path.resolve('./uploads/' + req.params.name));
 });
 
 app.get('/', (req, res) =>{
