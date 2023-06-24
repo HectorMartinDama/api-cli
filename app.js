@@ -25,7 +25,6 @@ app.use(cors());
 
 const { version } = require('./package.json');
 const path = require('path');
-const { setTimeout } = require('timers/promises');
 
 // create the server
 const server = require('http').createServer(app);
