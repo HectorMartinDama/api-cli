@@ -60,10 +60,7 @@ app.post('/', upload.single('image'), (req, res) =>{
 
 
 app.get('/image/:name', (req, res) =>{
-    res.setTimeout(5000, () => {
-        res.sendFile(path.resolve('./uploads/' + req.params.name));
-    });
-    //res.sendFile(path.resolve('./uploads/' + req.params.name));
+    res.sendFile(path.resolve('./uploads/' + req.params.name));
 });
 
 app.get('/', (req, res) =>{
